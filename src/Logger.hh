@@ -50,7 +50,7 @@ SOFTWARE.
 //   std::string trace;
 //   ...
 //   ...
-//   tst::tracing::Logger::debug(msg, TST_FILE_LOCATION);
+//   ert::tracing::Logger::debug(msg, TST_FILE_LOCATION);
 // );
 //
 // LOG_EMERG =   0      system is unusable                   Emergency (emerg)
@@ -58,21 +58,21 @@ SOFTWARE.
 // LOG_CRIT =    2      critical conditions                  Critical (crit)
 // LOG_ERR =     3      error conditions                     Error (err)
 // LOG_WARNING = 4      warning conditions                   Warning (warning)
-#define LOGWARNING(a) if (tst::tracing::Logger::isActive (tst::tracing::Logger::Warning)) {a;}
+#define LOGWARNING(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Warning)) {a;}
 // LOG_NOTICE =  5      normal but significant condition     Notice (notice)
-#define LOGNOTICE(a) if (tst::tracing::Logger::isActive (tst::tracing::Logger::Notice)) {a;}
+#define LOGNOTICE(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Notice)) {a;}
 // LOG_INFO =    6      informational                        Informational (info)
-#define LOGINFORMATIONAL(a) if (tst::tracing::Logger::isActive (tst::tracing::Logger::Informational)) {a;}
+#define LOGINFORMATIONAL(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Informational)) {a;}
 // LOG_DEBUG =   7      debug-level messages                 Debug (debug)
-#define LOGDEBUG(a) if (tst::tracing::Logger::isActive (tst::tracing::Logger::Debug)) {a;}
+#define LOGDEBUG(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Debug)) {a;}
 
 // Fast macro (when arguments are efficient on render):
-#define TRACE(level, format, args...) { if(tst::tracing::Logger::isActive(level)) { \
-   tst::tracing::Logger::write(level, tst::tracing::Logger::asString(format,##args).c_str(), TST_FILE_LOCATION); \
+#define TRACE(level, format, args...) { if(ert::tracing::Logger::isActive(level)) { \
+   ert::tracing::Logger::write(level, ert::tracing::Logger::asString(format,##args).c_str(), TST_FILE_LOCATION); \
 }; }
 
 
-namespace tst {
+namespace ert {
 
 namespace tracing {
 
@@ -290,7 +290,7 @@ private:
 };
 
 } // namespace tracing
-} // namespace tst
+} // namespace ert
 
 #endif
 

@@ -2,7 +2,7 @@
 # Versions #
 ############
 cmake_minimum_required (VERSION 3.5.1)
-project(tst-logger VERSION 1.0.0 LANGUAGES CXX)
+project(logger VERSION 1.0.0 LANGUAGES CXX)
 
 ###########
 # Modules #
