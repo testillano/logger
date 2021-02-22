@@ -1,12 +1,12 @@
 /*
-  _       _          _
- | |     | |        | |
- | |_ ___| |_   __  | | ___   __ _  __ _  ___ _ __
- | __/ __| __| |__| | |/ _ \ / _` |/ _` |/ _ \ '__|   Syslog wrapper library C++
- | |_\__ \ |_       | | (_) | (_| | (_| |  __/ |      Version 1.0.0
-  \__|___/\__|      |_|\___/ \__, |\__, |\___|_|      https://github.com/testillano/logger
-                              __/ | __/ |
-                             |___/ |___/
+            _          _
+           | |        | |
+   ___ _ __| |_   __  | |
+  / _ \ '__| __| |__| | |/ _ \ / _` |/ _` |/ _ \ '__|  Syslog wrapper library C++
+ |  __/ |  | |_       | | (_) | (_| | (_| |  __/ |     Version 1.0.0
+  \___|_|   \__|      |_|\___/ \__, |\__, |\___|_|     https://github.com/testillano/logger
+                                __/ | __/ |
+                               |___/ |___/
 
 Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 SPDX-License-Identifier: MIT
@@ -50,7 +50,7 @@ SOFTWARE.
 //   std::string trace;
 //   ...
 //   ...
-//   ert::tracing::Logger::debug(msg, TST_FILE_LOCATION);
+//   ert::Logger::debug(msg, TST_FILE_LOCATION);
 // );
 //
 // LOG_EMERG =   0      system is unusable                   Emergency (emerg)
@@ -58,23 +58,21 @@ SOFTWARE.
 // LOG_CRIT =    2      critical conditions                  Critical (crit)
 // LOG_ERR =     3      error conditions                     Error (err)
 // LOG_WARNING = 4      warning conditions                   Warning (warning)
-#define LOGWARNING(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Warning)) {a;}
+#define LOGWARNING(a) if (ert::Logger::isActive (ert::Logger::Warning)) {a;}
 // LOG_NOTICE =  5      normal but significant condition     Notice (notice)
-#define LOGNOTICE(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Notice)) {a;}
+#define LOGNOTICE(a) if (ert::Logger::isActive (ert::Logger::Notice)) {a;}
 // LOG_INFO =    6      informational                        Informational (info)
-#define LOGINFORMATIONAL(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Informational)) {a;}
+#define LOGINFORMATIONAL(a) if (ert::Logger::isActive (ert::Logger::Informational)) {a;}
 // LOG_DEBUG =   7      debug-level messages                 Debug (debug)
-#define LOGDEBUG(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Debug)) {a;}
+#define LOGDEBUG(a) if (ert::Logger::isActive (ert::Logger::Debug)) {a;}
 
 // Fast macro (when arguments are efficient on render):
-#define TRACE(level, format, args...) { if(ert::tracing::Logger::isActive(level)) { \
-   ert::tracing::Logger::write(level, ert::tracing::Logger::asString(format,##args).c_str(), TST_FILE_LOCATION); \
+#define TRACE(level, format, args...) { if(ert::Logger::isActive(level)) { \
+   ert::Logger::write(level, ert::Logger::asString(format,##args).c_str(), TST_FILE_LOCATION); \
 }; }
 
 
 namespace ert {
-
-namespace tracing {
 
 /**
    Facility to generate application logs
@@ -289,7 +287,6 @@ private:
     ~Logger() {};
 };
 
-} // namespace tracing
 } // namespace ert
 
 #endif

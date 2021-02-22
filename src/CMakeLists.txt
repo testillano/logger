@@ -1,7 +1,7 @@
-add_library (logger
-  ${CMAKE_CURRENT_LIST_DIR}/Logger.cc
+add_library (${ERT_LOGGER_TARGET_NAME}
+  ${CMAKE_CURRENT_LIST_DIR}/Logger.cpp
 )
 
-target_include_directories (logger
-  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+target_include_directories (${ERT_LOGGER_TARGET_NAME}
+  PUBLIC ${ERT_LOGGER_INCLUDE_BUILD_DIR}
 )

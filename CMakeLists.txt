@@ -2,12 +2,18 @@
 # Versions #
 ############
 cmake_minimum_required (VERSION 3.5.1)
-project(logger VERSION 1.0.0 LANGUAGES CXX)
+project(ert_logger VERSION 1.0.0 LANGUAGES CXX)
 
 ###########
 # Modules #
 ###########
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/")
+
+#################
+# Configuration #
+#################
+set(ERT_LOGGER_TARGET_NAME       ${PROJECT_NAME})
+set(ERT_LOGGER_INCLUDE_BUILD_DIR "${PROJECT_SOURCE_DIR}/include/")
 
 ##############
 # Build type #
@@ -35,6 +41,18 @@ add_compile_options(
 link_libraries(
     $<$<CONFIG:Debug>:--coverage>
 )
+
+############
+# Includes #
+############
+#add_library(${ERT_LOGGER_TARGET_NAME} INTERFACE)
+#add_library(${PROJECT_NAME}::${ERT_LOGGER_TARGET_NAME} ALIAS ${ERT_LOGGER_TARGET_NAME})
+#target_include_directories(
+#    ${ERT_LOGGER_TARGET_NAME}
+#    INTERFACE
+#    $<BUILD_INTERFACE:${ERT_LOGGER_INCLUDE_BUILD_DIR}>
+#    $<INSTALL_INTERFACE:include>
+#)
 
 ##################
 # Subdirectories #

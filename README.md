@@ -27,16 +27,17 @@ it inline:
 
 ### Execute example
 
-    ./logme
+    examples/logme
 
 This will show the correct usage:
 
-    Usage: logme <log level>
+    usage: logme <log level>
+    Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
 
 ### Contributing
 
 Please, execute `astyle` formatting before any pull request:
 
     docker pull frankwolf/astyle
-    docker run -it --rm -v $PWD:/data frankwolf/astyle src/Logger.hh src/Logger.cc examples/main.cc
+    docker run -it --rm -v $PWD:/data frankwolf/astyle include/ert/Logger.hpp src/Logger.cpp examples/main.cpp
 
