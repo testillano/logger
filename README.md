@@ -89,5 +89,5 @@ This will show the correct usage:
 Please, execute `astyle` formatting before any pull request:
 
     docker pull frankwolf/astyle
-    docker run -it --rm -v $PWD:/data frankwolf/astyle include/ert/Logger.hpp src/Logger.cpp examples/main.cpp
+    docker run -it --rm -v $PWD:/data frankwolf/astyle include/ert/tracing/Logger.hpp src/Logger.cpp examples/main.cpp
 
