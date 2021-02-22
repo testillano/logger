@@ -1,0 +1,5 @@
+**/*.orig
+.cproject
+.project
+.vscode
+cmake-build-*
