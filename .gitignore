@@ -3,3 +3,9 @@
 .project
 .vscode
 cmake-build-*
+CMakeCache.txt
+**/CMakeFiles
+**/cmake_install.cmake
+**/Makefile
+examples/logme
+**/*.a
