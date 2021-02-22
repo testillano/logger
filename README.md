@@ -32,6 +32,8 @@ it inline:
 
 #### Embedded
 
+##### Replication
+
 To embed the library directly into an existing CMake project, place the entire source tree in a subdirectory and call `add_subdirectory()` in your `CMakeLists.txt` file:
 
 ```cmake
@@ -46,7 +48,7 @@ add_library(foo ...)
 target_link_libraries(foo PRIVATE ert_logger::ert_logger)
 ```
 
-##### Embedded (FetchContent)
+##### FetchContent
 
 Since CMake v3.11,
 [FetchContent](https://cmake.org/cmake/help/v3.11/module/FetchContent.html) can be used to automatically download the repository as a dependency at configure type.
