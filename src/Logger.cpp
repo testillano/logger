@@ -34,10 +34,11 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdarg.h>
 
-#include <ert/Logger.hpp>
+#include <tracing/Logger.hpp>
 
 
 namespace ert {
+namespace tracing {
 
 std::mutex Logger::mutex_;
 Logger::Level Logger::level_ = Logger::Warning;
@@ -93,6 +94,7 @@ const char* Logger::levelAsString(const Level level)
     return result;
 }
 
+}
 }
 
 

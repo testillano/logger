@@ -19,7 +19,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/")
 ###########################
 option(ERT_LOGGER_BuildExamples "Build the examples." ${MAIN_PROJECT})
 set(ERT_LOGGER_TARGET_NAME       ${PROJECT_NAME})
-set(ERT_LOGGER_INCLUDE_BUILD_DIR "${PROJECT_SOURCE_DIR}/include/")
+set(ERT_LOGGER_INCLUDE_BUILD_DIR "${PROJECT_SOURCE_DIR}/include/ert")
 
 ##############
 # Build type #

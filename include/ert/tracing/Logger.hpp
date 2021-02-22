@@ -31,8 +31,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef TST_TRACING_LOGGER_H_
-#define TST_TRACING_LOGGER_H_
+#ifndef ERT_TRACING_LOGGER_H_
+#define ERT_TRACING_LOGGER_H_
 
 #include <mutex>
 #include <string>
@@ -40,7 +40,7 @@ SOFTWARE.
 #include <syslog.h>
 
 // Logger macros
-#define TST_FILE_LOCATION (const char *)__FILE__,(const int)__LINE__,(const char*)__func__
+#define ERT_FILE_LOCATION (const char *)__FILE__,(const int)__LINE__,(const char*)__func__
 
 // Block-level-protected macros:
 //
@@ -50,7 +50,7 @@ SOFTWARE.
 //   std::string trace;
 //   ...
 //   ...
-//   ert::Logger::debug(msg, TST_FILE_LOCATION);
+//   ert::tracing::Logger::debug(msg, ERT_FILE_LOCATION);
 // );
 //
 // LOG_EMERG =   0      system is unusable                   Emergency (emerg)
@@ -58,21 +58,22 @@ SOFTWARE.
 // LOG_CRIT =    2      critical conditions                  Critical (crit)
 // LOG_ERR =     3      error conditions                     Error (err)
 // LOG_WARNING = 4      warning conditions                   Warning (warning)
-#define LOGWARNING(a) if (ert::Logger::isActive (ert::Logger::Warning)) {a;}
+#define LOGWARNING(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Warning)) {a;}
 // LOG_NOTICE =  5      normal but significant condition     Notice (notice)
-#define LOGNOTICE(a) if (ert::Logger::isActive (ert::Logger::Notice)) {a;}
+#define LOGNOTICE(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Notice)) {a;}
 // LOG_INFO =    6      informational                        Informational (info)
-#define LOGINFORMATIONAL(a) if (ert::Logger::isActive (ert::Logger::Informational)) {a;}
+#define LOGINFORMATIONAL(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Informational)) {a;}
 // LOG_DEBUG =   7      debug-level messages                 Debug (debug)
-#define LOGDEBUG(a) if (ert::Logger::isActive (ert::Logger::Debug)) {a;}
+#define LOGDEBUG(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Debug)) {a;}
 
 // Fast macro (when arguments are efficient on render):
-#define TRACE(level, format, args...) { if(ert::Logger::isActive(level)) { \
-   ert::Logger::write(level, ert::Logger::asString(format,##args).c_str(), TST_FILE_LOCATION); \
+#define TRACE(level, format, args...) { if(ert::tracing::Logger::isActive(level)) { \
+   ert::tracing::Logger::write(level, ert::tracing::Logger::asString(format,##args).c_str(), ERT_FILE_LOCATION); \
 }; }
 
 
 namespace ert {
+namespace tracing {
 
 /**
    Facility to generate application logs
@@ -287,7 +288,8 @@ private:
     ~Logger() {};
 };
 
-} // namespace ert
+}
+}
 
 #endif
 
