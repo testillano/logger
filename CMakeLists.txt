@@ -4,14 +4,20 @@
 cmake_minimum_required (VERSION 3.5.1)
 project(ert_logger VERSION 1.0.0 LANGUAGES CXX)
 
+set(MAIN_PROJECT OFF)
+if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(MAIN_PROJECT ON)
+endif()
+
 ###########
 # Modules #
 ###########
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/")
 
-#################
-# Configuration #
-#################
+###########################
+# Options & Configuration #
+###########################
+option(ERT_LOGGER_BuildExamples "Build the examples." ${MAIN_PROJECT})
 set(ERT_LOGGER_TARGET_NAME       ${PROJECT_NAME})
 set(ERT_LOGGER_INCLUDE_BUILD_DIR "${PROJECT_SOURCE_DIR}/include/")
 
@@ -58,5 +64,7 @@ link_libraries(
 # Subdirectories #
 ##################
 add_subdirectory( src )
-add_subdirectory( examples )
+if (ERT_LOGGER_BuildExamples)
+  add_subdirectory( examples )
+endif()
 

@@ -20,6 +20,54 @@ it inline:
 >    TRACE is used for that.
 >
 
+## Integration
+
+[`logger.hpp`](https://github.com/testillano/logger/blob/master/include/ert/logger.hpp) is the single required file in `include/ert` or [released here](https://github.com/testillano/logger/releases). You need to add
+
+```cpp
+#include <ert/logger.hpp>
+```
+
+### CMake
+
+#### Embedded
+
+To embed the library directly into an existing CMake project, place the entire source tree in a subdirectory and call `add_subdirectory()` in your `CMakeLists.txt` file:
+
+```cmake
+# Typically you don't care so much for a third party library's examples to be
+# run from your own project's code.
+set(ERT_LOGGER_BuildExamples OFF CACHE INTERNAL "")
+
+add_subdirectory(ert_logger)
+...
+add_library(foo ...)
+...
+target_link_libraries(foo PRIVATE ert_logger::ert_logger)
+```
+
+##### Embedded (FetchContent)
+
+Since CMake v3.11,
+[FetchContent](https://cmake.org/cmake/help/v3.11/module/FetchContent.html) can be used to automatically download the repository as a dependency at configure type.
+
+Example:
+```cmake
+include(FetchContent)
+
+FetchContent_Declare(ert_logger
+  GIT_REPOSITORY https://github.com/testillano/logger.git
+  GIT_TAG v1.0.1)
+
+FetchContent_GetProperties(ert_logger)
+if(NOT ert_json_POPULATED)
+  FetchContent_Populate(ert_logger)
+  add_subdirectory(${ert_logger_SOURCE_DIR} ${ert_logger_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
+target_link_libraries(foo PRIVATE ert_logger::ert_logger)
+```
+
 ### Build
 
     cmake .
