@@ -36,7 +36,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdarg.h>
 
-namespace tst {
+namespace ert {
 namespace tracing {
 
 std::mutex Logger::mutex_;
