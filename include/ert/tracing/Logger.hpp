@@ -66,12 +66,6 @@ SOFTWARE.
 // LOG_DEBUG =   7      debug-level messages                 Debug (debug)
 #define LOGDEBUG(a) if (ert::tracing::Logger::isActive (ert::tracing::Logger::Debug)) {a;}
 
-// Fast macro (when arguments are efficient on render):
-#define TRACE(level, format, args...) { if(ert::tracing::Logger::isActive(level)) { \
-   ert::tracing::Logger::write(level, ert::tracing::Logger::asString(format,##args).c_str(), ERT_FILE_LOCATION); \
-}; }
-
-
 namespace ert {
 namespace tracing {
 

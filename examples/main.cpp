@@ -13,14 +13,14 @@ const char* progname;
 
 void _exit(int rc)
 {
-    TRACE(ert::tracing::Logger::Warning, "Terminating with exit code %d", rc)
+    LOGWARNING(ert::tracing::Logger::warning(ert::tracing::Logger::asString("Terminating with exit code %d", rc), ERT_FILE_LOCATION));
     ert::tracing::Logger::terminate();
     exit(rc);
 }
 
 void sighndl(int signal)
 {
-    TRACE(ert::tracing::Logger::Warning, "Signal received: %d", signal)
+    LOGWARNING(ert::tracing::Logger::warning(ert::tracing::Logger::asString("Signal received: %d", signal), ERT_FILE_LOCATION));
     _exit(EXIT_FAILURE);
 }
 
@@ -70,14 +70,6 @@ int main(int argc, char* argv[]) {
         std::string msg = ert::tracing::Logger::asString("This is LOGWARNING (level %d)", ert::tracing::Logger::Warning);
         ert::tracing::Logger::warning(msg, ERT_FILE_LOCATION);
     );
-    TRACE(ert::tracing::Logger::Debug, "This is TRACE for level %d", ert::tracing::Logger::Debug);
-    TRACE(ert::tracing::Logger::Informational, "This is TRACE for level %d", ert::tracing::Logger::Informational);
-    TRACE(ert::tracing::Logger::Notice, "This is TRACE for level %d", ert::tracing::Logger::Notice);
-    TRACE(ert::tracing::Logger::Warning, "This is TRACE for level %d", ert::tracing::Logger::Warning);
-    TRACE(ert::tracing::Logger::Error, "This is TRACE for level %d", ert::tracing::Logger::Error);
-    TRACE(ert::tracing::Logger::Critical, "This is TRACE for level %d", ert::tracing::Logger::Critical);
-    TRACE(ert::tracing::Logger::Alert, "This is TRACE for level %d", ert::tracing::Logger::Alert);
-    TRACE(ert::tracing::Logger::Emergency, "This is TRACE for level %d", ert::tracing::Logger::Emergency);
 
     _exit(EXIT_SUCCESS);
 }

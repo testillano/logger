@@ -8,17 +8,10 @@ This library is a simple wrapper static class over `syslog.h` in order to
 check the log level in advance and also provides useful macro definitions
 to ease messages formatting:
 
-Sometimes you need to protect a whole block of code which only shall be
-processed when the appropriate log level is assigned:
+You should protect a whole block of code which only shall be processed when
+the appropriate log level is assigned:
 
 >    LOGDEBUG, LOGINFORMATIONAL, LOGNOTICE and LOGWARNING are used for that.
->
-
-Other times, you already have information available and just need to trace
-it inline:
-
->    TRACE is used for that.
->
 
 ## Integration
 
