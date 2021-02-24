@@ -120,6 +120,7 @@ public:
     static void setLevel(const Level level) {
         std::lock_guard<std::mutex> guard(mutex_);
         level_ = (level <= Error) ? Error : level;
+        setlogmask(LOG_UPTO(level_)); // just in case syslog is used directly
     }
 
     /**
