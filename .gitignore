@@ -9,3 +9,8 @@ CMakeCache.txt
 **/Makefile
 build
 install_manifest.txt
+CMakeDoxygenDefaults.cmake
+CMakeDoxyfile.in
+docs/doxygen/html
+docs/doxygen/man
+docs/doxygen/latex
