@@ -34,11 +34,11 @@ To embed the library directly into an existing CMake project, place the entire s
 # run from your own project's code.
 set(ERT_LOGGER_BuildExamples OFF CACHE INTERNAL "")
 
-add_subdirectory(ertlogger)
+add_subdirectory(ert_logger)
 ...
 add_library(foo ...)
 ...
-target_link_libraries(foo PRIVATE ertlogger::ertlogger)
+target_link_libraries(foo PRIVATE ert_logger::ert_logger)
 ```
 
 ##### FetchContent
@@ -50,23 +50,27 @@ Example:
 ```cmake
 include(FetchContent)
 
-FetchContent_Declare(ertlogger
+FetchContent_Declare(ert_logger
   GIT_REPOSITORY https://github.com/testillano/logger.git
-  GIT_TAG v1.0.3)
+  GIT_TAG vx.y.z)
 
-FetchContent_GetProperties(ertlogger)
+FetchContent_GetProperties(ert_logger)
 if(NOT ert_json_POPULATED)
-  FetchContent_Populate(ertlogger)
-  add_subdirectory(${ertlogger_SOURCE_DIR} ${ertlogger_BINARY_DIR} EXCLUDE_FROM_ALL)
+  FetchContent_Populate(ert_logger)
+  add_subdirectory(${ert_logger_SOURCE_DIR} ${ert_logger_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
-
-target_link_libraries(foo PRIVATE ertlogger::ertlogger)
 ```
 
 ### Build
 
     cmake .
     make
+
+##### Doxygen documentation
+
+This requires `doxygen` installed: `sudo apt-get install doxygen`.
+
+    make doc
 
 ### Execute example
 
