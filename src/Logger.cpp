@@ -34,7 +34,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdarg.h>
 
-#include <tracing/Logger.hpp>
+#include <ert/tracing/Logger.hpp>
 
 
 namespace ert {

@@ -2,7 +2,7 @@
 # Versions #
 ############
 cmake_minimum_required (VERSION 3.5.1)
-project(ert_logger VERSION 1.0.4 LANGUAGES CXX)
+project(ert_logger VERSION 1.0.5 LANGUAGES CXX)
 
 set(MAIN_PROJECT OFF)
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
@@ -14,7 +14,7 @@ endif()
 #############
 option(ERT_LOGGER_BuildExamples "Build the examples." ${MAIN_PROJECT})
 set(ERT_LOGGER_TARGET_NAME       ${PROJECT_NAME})
-set(ERT_LOGGER_INCLUDE_BUILD_DIR "${PROJECT_SOURCE_DIR}/include/ert")
+set(ERT_LOGGER_INCLUDE_BUILD_DIR "${PROJECT_SOURCE_DIR}/include")
 
 # C++ Standard
 set(CMAKE_CXX_STANDARD 17)
@@ -63,8 +63,8 @@ endif()
 include(GNUInstallDirs)
 message(STATUS "CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
 install(
-          DIRECTORY ${ERT_LOGGER_INCLUDE_BUILD_DIR}/tracing
-          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/ert/logger
+          DIRECTORY ${ERT_LOGGER_INCLUDE_BUILD_DIR}/ert/tracing
+          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/ert
 )
 
 # Library install, at src project
