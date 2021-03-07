@@ -55,20 +55,17 @@ std::string Logger::asString(const char* format, ...)
 }
 
 bool Logger::setLevel(const std::string &level) {
-    if (level == "Debug") setLevel(Debug);
-    else if (level == "Informational") setLevel(Informational);
-    else if (level == "Notice") setLevel(Notice);
-    else if (level == "Warning") setLevel(Warning);
-    else if (level == "Error") setLevel(Error);
-    else if (level == "Critical") setLevel(Critical);
-    else if (level == "Alert") setLevel(Alert);
-    else if (level == "Emergency") setLevel(Emergency);
-    else return false;
+
+    Level value = stringAsLevel(level);
+
+    if (value == -1) return false;
+
+    setLevel(value);
 
     return true;
 }
 
-void Logger::write(const Level level, const char* text, const char* fromFile, const int fromLine, const char* fromFunc)
+void Logger::log(const Level level, const char* text, const char* fromFile, const int fromLine, const char* fromFunc)
 {
     if(isActive(level)) {
         const char *s_level = levelAsString(level);
@@ -92,6 +89,20 @@ const char* Logger::levelAsString(const Level level)
         result = levels [level];
 
     return result;
+}
+
+Logger::Level Logger::stringAsLevel(const std::string& level)
+{
+    if (level == "Debug")  return Debug;
+    else if (level == "Informational") return Informational;
+    else if (level == "Notice") return Notice;
+    else if (level == "Warning") return Warning;
+    else if (level == "Error") return Error;
+    else if (level == "Critical") return Critical;
+    else if (level == "Alert") return Alert;
+    else if (level == "Emergency") return Emergency;
+
+    return (Logger::Level)-1;
 }
 
 }

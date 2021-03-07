@@ -82,7 +82,7 @@ public:
     */
     enum Level {
         Emergency = LOG_EMERG, Alert = LOG_ALERT, Critical = LOG_CRIT, Error = LOG_ERR,
-        Warning = LOG_WARNING, Notice = LOG_NOTICE, Informational = LOG_INFO, Debug = LOG_DEBUG
+        Warning = LOG_WARNING, Notice = LOG_NOTICE, Informational = LOG_INFO, Debug = LOG_DEBUG,
     };
 
     /**
@@ -154,8 +154,8 @@ public:
     static std::string asString(const char* format, ...);
 
     /**
-       Traces the text provided with a specific level.
-       Trace only is registered when level received is enabled.
+       Logs the text provided with a specific level when
+       this level is active.
 
        @param level Trace level to register
        @param text Trace text
@@ -163,9 +163,9 @@ public:
        @param fromLine Line for trace
        @param fromFunc Function for trace
     */
-    static void write(const Level level, const char* text, const char* fromFile, const int fromLine, const char* fromFunc);
-    static void write(const Level level, const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc) {
-        write(level, text.c_str(), fromFile, fromLine, fromFunc);
+    static void log(const Level level, const char* text, const char* fromFile, const int fromLine, const char* fromFunc);
+    static void log(const Level level, const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc) {
+        log(level, text.c_str(), fromFile, fromLine, fromFunc);
     }
 
     // Specific logger shortcuts:
@@ -179,7 +179,7 @@ public:
     */
     static void debug(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Debug, text, fromFile, fromLine, fromFunc);
+        log(Logger::Debug, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for informational enabled level
@@ -191,7 +191,7 @@ public:
     */
     static void informational(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Informational, text, fromFile, fromLine, fromFunc);
+        log(Logger::Informational, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for notice enabled level
@@ -203,7 +203,7 @@ public:
     */
     static void notice(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Notice, text, fromFile, fromLine, fromFunc);
+        log(Logger::Notice, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for warning enabled level
@@ -215,7 +215,7 @@ public:
     */
     static void warning(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Warning, text, fromFile, fromLine, fromFunc);
+        log(Logger::Warning, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for error enabled level
@@ -227,7 +227,7 @@ public:
     */
     static void error(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Error, text, fromFile, fromLine, fromFunc);
+        log(Logger::Error, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for critical enabled level
@@ -239,7 +239,7 @@ public:
     */
     static void critical(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Critical, text, fromFile, fromLine, fromFunc);
+        log(Logger::Critical, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for alert enabled level
@@ -251,7 +251,7 @@ public:
     */
     static void alert(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Alert, text, fromFile, fromLine, fromFunc);
+        log(Logger::Alert, text, fromFile, fromLine, fromFunc);
     }
     /**
        Logger shortcut for emergency enabled level
@@ -263,16 +263,27 @@ public:
     */
     static void emergency(const std::string& text, const char* fromFile, const int fromLine, const char* fromFunc)
     {
-        write(Logger::Emergency, text, fromFile, fromLine, fromFunc);
+        log(Logger::Emergency, text, fromFile, fromLine, fromFunc);
     }
 
     /**
-       @return String which identifies the level received as parameter
+       Translates internal level value into string representation.
 
-       @warning We are not using syslog standard but TLL propietary slogans to keep compatibility
+       @return String which identifies the level value received as parameter
+
+       @warning We are not using syslog standard but our propietary slogans to keep compatibility
     */
     static const char* levelAsString(const Level level);
 
+    /**
+       Translates string representation for level into internal value.
+       Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
+
+       @return Level which identifies the level string received as parameter. Return -1 when level is unsupported.
+
+       @warning We are not using syslog standard but our propietary slogans to keep compatibility
+    */
+    static Level stringAsLevel(const std::string& level);
 
 private:
     static std::mutex mutex_;

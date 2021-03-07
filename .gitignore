@@ -7,5 +7,5 @@ CMakeCache.txt
 **/CMakeFiles
 **/cmake_install.cmake
 **/Makefile
-examples/logme
-**/*.a
+build
+install_manifest.txt
