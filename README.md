@@ -34,11 +34,11 @@ To embed the library directly into an existing CMake project, place the entire s
 # run from your own project's code.
 set(ERT_LOGGER_BuildExamples OFF CACHE INTERNAL "")
 
-add_subdirectory(ert_logger)
+add_subdirectory(ertlogger)
 ...
 add_library(foo ...)
 ...
-target_link_libraries(foo PRIVATE ert_logger::ert_logger)
+target_link_libraries(foo PRIVATE ertlogger::ertlogger)
 ```
 
 ##### FetchContent
@@ -50,17 +50,17 @@ Example:
 ```cmake
 include(FetchContent)
 
-FetchContent_Declare(ert_logger
+FetchContent_Declare(ertlogger
   GIT_REPOSITORY https://github.com/testillano/logger.git
-  GIT_TAG v1.0.1)
+  GIT_TAG v1.0.3)
 
-FetchContent_GetProperties(ert_logger)
+FetchContent_GetProperties(ertlogger)
 if(NOT ert_json_POPULATED)
-  FetchContent_Populate(ert_logger)
-  add_subdirectory(${ert_logger_SOURCE_DIR} ${ert_logger_BINARY_DIR} EXCLUDE_FROM_ALL)
+  FetchContent_Populate(ertlogger)
+  add_subdirectory(${ertlogger_SOURCE_DIR} ${ertlogger_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
-target_link_libraries(foo PRIVATE ert_logger::ert_logger)
+target_link_libraries(foo PRIVATE ertlogger::ertlogger)
 ```
 
 ### Build
@@ -70,12 +70,16 @@ target_link_libraries(foo PRIVATE ert_logger::ert_logger)
 
 ### Execute example
 
-    examples/logme
+    build/Release/bin/logme
 
 This will show the correct usage:
 
     usage: logme <log level>
     Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
+
+### Install
+
+    make install
 
 ### Contributing
 
