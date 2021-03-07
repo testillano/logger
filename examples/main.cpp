@@ -7,7 +7,7 @@
 #include <string>
 #include <algorithm>
 
-#include <tracing/Logger.hpp>
+#include <ert/tracing/Logger.hpp>
 
 const char* progname;
 
