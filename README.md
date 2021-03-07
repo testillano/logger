@@ -15,7 +15,7 @@ the appropriate log level is assigned:
 
 ## Integration
 
-[`logger.hpp`](https://github.com/testillano/logger/blob/master/include/ert/logger.hpp) is the single required file in `include/ert` or [released here](https://github.com/testillano/logger/releases). You need to add
+[`logger.hpp`](https://github.com/testillano/logger/blob/master/include/ert/tracing/Logger.hpp) is the single required file in `include/ert` or [released here](https://github.com/testillano/logger/releases). You need to add
 
 ```cpp
 #include <ert/logger.hpp>
@@ -79,7 +79,7 @@ This will show the correct usage:
 
 ### Install
 
-    make install
+    sudo make install
 
 ### Contributing
 
