@@ -1,16 +1,18 @@
 /*
-            _          _
-           | |        | |
-   ___ _ __| |_   __  | |
-  / _ \ '__| __| |__| | |/ _ \ / _` |/ _` |/ _ \ '__|  Syslog wrapper library C++
- |  __/ |  | |_       | | (_) | (_| | (_| |  __/ |     Version 1.0.z
-  \___|_|   \__|      |_|\___/ \__, |\__, |\___|_|     https://github.com/testillano/logger
-                                __/ | __/ |
-                               |___/ |___/
+ _________________________________________________________
+|             _          _                               |
+|            | |        | |                              |
+|    ___ _ __| |_   __  | | ___   __ _  __ _  ___ _ __   |
+|   / _ \ '__| __| |__| | |/ _ \ / _` |/ _` |/ _ \ '__|  |  Syslog wrapper library C++
+|  |  __/ |  | |_       | | (_) | (_| | (_| |  __/ |     |  Version 1.0.z
+|   \___|_|   \__|      |_|\___/ \__, |\__, |\___|_|     |  https://github.com/testillano/logger
+|                                 __/ | __/ |            |
+|                                |___/ |___/             |
+|________________________________________________________|
 
 Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 SPDX-License-Identifier: MIT
-Copyright (c) 2004-2021 Eduardo Ramos <http://www.teslayout.com>.
+Copyright (c) 2021 Eduardo Ramos
 
 Permission is hereby  granted, free of charge, to any  person obtaining a copy
 of this software and associated  documentation files (the "Software"), to deal
