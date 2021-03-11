@@ -65,32 +65,39 @@ endif()
 
 ### Build
 
-    cmake .
-    make
+```bash
+$ cmake .
+$ make
+```
 
 ##### Doxygen documentation
 
 This requires `doxygen` installed: `sudo apt-get install doxygen`.
 
-    make doc
+```bash
+$ make doc
+```
 
 ### Execute example
 
-    build/Release/bin/logme
-
-This will show the correct usage:
-
-    usage: logme <log level>
-    Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
+```bash
+$ build/Release/bin/logme
+$ usage: logme <log level>
+  Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
+```
 
 ### Install
 
-    sudo make install
+```bash
+$ sudo make install
+```
 
 ### Contributing
 
-Please, execute `astyle` formatting before any pull request:
+Please, execute `astyle` formatting (using [frankwolf image](https://hub.docker.com/r/frankwolf/astyle)) before any pull request:
 
-    docker pull frankwolf/astyle
-    docker run -it --rm -v $PWD:/data frankwolf/astyle include/ert/tracing/Logger.hpp src/Logger.cpp examples/main.cpp
+```bash
+$ sources=$(find . -name "*.hpp" -o -name "*.cpp")
+$ docker run -it --rm -v $PWD:/data frankwolf/astyle ${sources}
+```
 
