@@ -114,6 +114,17 @@ public:
     }
 
     /**
+       Set verbose flag to output log traces on console.
+       By default is disabled.
+
+       @param enabled Boolean about activating verbose output
+    */
+    static void verbose(bool enabled = true) {
+        std::lock_guard<std::mutex> guard(mutex_);
+        verbose_ = enabled;
+    }
+
+    /**
        Sets application trace level, warning by default.
        Only logs under this level will be processed.
 
@@ -291,6 +302,7 @@ private:
     static std::mutex mutex_;
     static Level level_;
     static bool initialized_;
+    static bool verbose_;
 
     Logger() {};
     ~Logger() {};

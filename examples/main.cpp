@@ -63,8 +63,8 @@ void usage(int rc)
 {
     auto& ss = (rc == 0) ? std::cout : std::cerr;
 
-    ss << "usage: " << progname << " <log level>" << '\n'
-       << "Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency" << '\n';
+    ss << '\n' << "Usage: " << progname << " <log level> [--verbose (to print traces on console)]" << '\n'
+       << '\n' << "Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency" << '\n';
 
     _exit(rc);
 }
@@ -86,25 +86,43 @@ int main(int argc, char* argv[]) {
     {
         usage(EXIT_FAILURE);
     }
+    std::string verbose = (argc > 2) ? argv[2]:"";
+    if (verbose == "--verbose") ert::tracing::Logger::verbose();
+
 
     std::cout << "Level configured = " << ert::tracing::Logger::getLevel() << '\n';
 
     LOGDEBUG(
-        std::string msg = ert::tracing::Logger::asString("This is LOGDEBUG (level %d)", ert::tracing::Logger::Debug);
+        std::string msg = ert::tracing::Logger::asString("This is DEBUG (level %d)", ert::tracing::Logger::Debug);
         ert::tracing::Logger::debug(msg, ERT_FILE_LOCATION);
     );
     LOGINFORMATIONAL(
-        std::string msg = ert::tracing::Logger::asString("This is LOGINFORMATIONAL (level %d)", ert::tracing::Logger::Informational);
+        std::string msg = ert::tracing::Logger::asString("This is INFORMATIONAL (level %d)", ert::tracing::Logger::Informational);
         ert::tracing::Logger::informational(msg, ERT_FILE_LOCATION);
     );
     LOGNOTICE(
-        std::string msg = ert::tracing::Logger::asString("This is LOGNOTICE (level %d)", ert::tracing::Logger::Notice);
+        std::string msg = ert::tracing::Logger::asString("This is NOTICE (level %d)", ert::tracing::Logger::Notice);
         ert::tracing::Logger::notice(msg, ERT_FILE_LOCATION);
     );
     LOGWARNING(
-        std::string msg = ert::tracing::Logger::asString("This is LOGWARNING (level %d)", ert::tracing::Logger::Warning);
+        std::string msg = ert::tracing::Logger::asString("This is WARNING (level %d)", ert::tracing::Logger::Warning);
         ert::tracing::Logger::warning(msg, ERT_FILE_LOCATION);
     );
+
+    std::string msg;
+
+    msg = ert::tracing::Logger::asString("This is ERROR (level %d)", ert::tracing::Logger::Error);
+    ert::tracing::Logger::error(msg, ERT_FILE_LOCATION);
+
+    msg = ert::tracing::Logger::asString("This is CRITICAL (level %d)", ert::tracing::Logger::Critical);
+    ert::tracing::Logger::critical(msg, ERT_FILE_LOCATION);
+
+    msg = ert::tracing::Logger::asString("This is ALERT (level %d)", ert::tracing::Logger::Alert);
+    ert::tracing::Logger::alert(msg, ERT_FILE_LOCATION);
+
+    // Commented to avoid journal broadcasting:
+    //msg = ert::tracing::Logger::asString("This is EMERGENCY (level %d)", ert::tracing::Logger::Emergency);
+    //ert::tracing::Logger::emergency(msg, ERT_FILE_LOCATION);
 
     _exit(EXIT_SUCCESS);
 }

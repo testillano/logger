@@ -82,8 +82,10 @@ $ make doc
 
 ```bash
 $ build/Release/bin/logme
-$ usage: logme <log level>
-  Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
+
+Usage: logme <log level> [--verbose (to print traces on console)]
+
+Log levels allowed: Debug|Informational|Notice|Warning|Error|Critical|Alert|Emergency
 ```
 
 ### Install

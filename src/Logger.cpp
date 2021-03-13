@@ -36,6 +36,8 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdarg.h>
 
+#include <iostream>
+
 #include <ert/tracing/Logger.hpp>
 
 
@@ -45,6 +47,7 @@ namespace tracing {
 std::mutex Logger::mutex_;
 Logger::Level Logger::level_ = Logger::Warning;
 bool Logger::initialized_ = false;
+bool Logger::verbose_ = false;
 
 std::string Logger::asString(const char* format, ...)
 {
@@ -72,6 +75,11 @@ void Logger::log(const Level level, const char* text, const char* fromFile, cons
     if(isActive(level)) {
         const char *s_level = levelAsString(level);
         syslog(level, "[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
+
+        if(verbose_) {
+          std::string trace = asString("[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
+          (level <= Error ? std::cerr:std::cout) << trace << '\n';
+        }
     }
 }
 
