@@ -1,5 +1,3 @@
-[TOC]
-
 # C++ syslog wrapper library
 
 The `syslog.h` library, could waste time parsing strings which are not going
