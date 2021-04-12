@@ -33,8 +33,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef ERT_TRACING_LOGGER_H_
-#define ERT_TRACING_LOGGER_H_
+#pragma once
 
 #include <mutex>
 #include <string>
@@ -310,6 +309,4 @@ private:
 
 }
 }
-
-#endif
 
