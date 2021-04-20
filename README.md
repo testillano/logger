@@ -1,5 +1,10 @@
 # C++ syslog wrapper library
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://codedocs.xyz/testillano/coffee.svg)](https://codedocs.xyz/testillano/logger/index.html)
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/testillano)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/testillano/logger/graphs/commit-activity)
+
 The `syslog.h` library, could waste time parsing strings which are not going
 to be finally logged. Indeed, `stdarg.h` is used behind so this could make
 slower programs when using `syslog` traces.
