@@ -1,7 +1,7 @@
 # C++ syslog wrapper library
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation](https://codedocs.xyz/testillano/coffee.svg)](https://codedocs.xyz/testillano/logger/index.html)
+[![Documentation](https://codedocs.xyz/testillano/logger.svg)](https://codedocs.xyz/testillano/logger/index.html)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/testillano)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/testillano/logger/graphs/commit-activity)
 
