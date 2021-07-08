@@ -74,10 +74,10 @@ void Logger::log(const Level level, const char* text, const char* fromFile, cons
 {
     if(isActive(level)) {
         const char *s_level = levelAsString(level);
-        syslog(level, "[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
+        std::string trace = asString("[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
+        syslog(level, trace.c_str());
 
         if(verbose_) {
-          std::string trace = asString("[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
           (level <= Error ? std::cerr:std::cout) << trace << '\n';
         }
     }
