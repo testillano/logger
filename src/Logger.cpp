@@ -52,7 +52,7 @@ bool Logger::verbose_ = false;
 std::string Logger::asString(const char* format, ...)
 {
     va_list ap;
-    char aux [4096];
+    char aux [8192];
     va_start(ap, format);
     vsnprintf(aux, sizeof(aux), format, ap);
     va_end(ap);
