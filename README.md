@@ -4,6 +4,7 @@
 [![Documentation](https://codedocs.xyz/testillano/logger.svg)](https://codedocs.xyz/testillano/logger/index.html)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/testillano)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/testillano/logger/graphs/commit-activity)
+[![Main project workflow](https://github.com/testillano/logger/actions/workflows/ci.yml/badge.svg)](https://github.com/testillano/logger/actions/workflows/ci.yml)
 
 The `syslog.h` library, could waste time parsing strings which are not going
 to be finally logged. Indeed, `stdarg.h` is used behind so this could make
