@@ -74,6 +74,13 @@ $ cmake .
 $ make
 ```
 
+For debug compilation, do the following:
+
+```bash
+$ cmake -DCMAKE_BUILD_TYPE=Debug .
+$ make
+```
+
 ##### Doxygen documentation
 
 This requires `doxygen` installed: `sudo apt-get install doxygen`.
