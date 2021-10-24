@@ -9,15 +9,15 @@ on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:
-      # Push events on master branch
-      - master
+    # Push events on master branch
+    - master
     # Sequence of patterns matched against refs/tags
     tags:
-      - v*.*.*             # Push events to vx.y.z
+    - v*.*.*             # Push events to vx.y.z
 
   pull_request:
     branches:
-      - master
+    - master
 
   # Publish `vx.y.z` tags as releases:
   #release:
