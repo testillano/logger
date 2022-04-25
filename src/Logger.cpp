@@ -35,6 +35,7 @@ SOFTWARE.
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <time.h>
 
 #include <iostream>
 
@@ -43,6 +44,22 @@ SOFTWARE.
 
 namespace ert {
 namespace tracing {
+
+std::string getLocaltime()
+{
+    std::string result;
+
+    char timebuffer[80];
+    time_t rawtime;
+    struct tm* timeinfo;
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    strftime(timebuffer, 80, "%d/%m/%y %H:%M:%S %Z", timeinfo);
+    result = timebuffer;
+
+    return result;
+}
 
 std::mutex Logger::mutex_;
 Logger::Level Logger::level_ = Logger::Warning;
@@ -77,7 +94,7 @@ void Logger::log(const Level level, const char* text, const char* fromFile, cons
         syslog(level, "[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
 
         if(verbose_) {
-            std::string trace = asString("[%s]|%s:%d(%s)|%s", (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
+            std::string trace = asString("%s: [%s]|%s:%d(%s)|%s", getLocaltime().c_str(), (s_level ? s_level:"<level not supported>"), fromFile, fromLine, fromFunc, text);
             (level <= Error ? std::cerr:std::cout) << trace << '\n';
         }
     }
