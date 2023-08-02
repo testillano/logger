@@ -71,6 +71,13 @@ namespace ert {
 namespace tracing {
 
 /**
+   Function to generate date-time string including
+   microseconds within the second, and timezone.
+   Example: 2023-08-02 19:16:46.340729 GMT
+ */
+std::string getLocaltime();
+
+/**
    Facility to generate application logs
 */
 class Logger {

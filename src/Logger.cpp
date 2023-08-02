@@ -35,9 +35,11 @@ SOFTWARE.
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <time.h>
+#include <ctime>
 
 #include <iostream>
+#include <iomanip>
+#include <chrono>
 
 #include <ert/tracing/Logger.hpp>
 
@@ -47,18 +49,23 @@ namespace tracing {
 
 std::string getLocaltime()
 {
-    std::string result;
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
+    std::tm timeinfo;
+    gmtime_r(&now_time_t, &timeinfo);
 
-    char timebuffer[80];
-    time_t rawtime;
-    struct tm* timeinfo;
+    // Time in format '%d-%m-%y %H:%M:%S':
+    std::ostringstream result;
+    result << std::put_time(&timeinfo, "%F %T");
 
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-    strftime(timebuffer, 80, "%d/%m/%y %H:%M:%S %Z", timeinfo);
-    result = timebuffer;
+    // Add microseconds:
+    auto unix_usecs = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count();
+    result << "." << std::setfill('0') << std::setw(6) << (unix_usecs % 1000000);
 
-    return result;
+    // Add timezone:
+    result << std::put_time(&timeinfo, " %Z");
+
+    return result.str();
 }
 
 std::mutex Logger::mutex_;
