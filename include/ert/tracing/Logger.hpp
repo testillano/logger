@@ -37,6 +37,7 @@ SOFTWARE.
 
 #include <mutex>
 #include <string>
+#include <atomic>
 
 #include <syslog.h>
 
@@ -116,7 +117,7 @@ public:
        @return Current application trace level
     */
     static Level getLevel() {
-        return level_;
+        return level_.load(std::memory_order_relaxed);
     }
 
     /**
@@ -126,8 +127,7 @@ public:
        @param enabled Boolean about activating verbose output
     */
     static void verbose(bool enabled = true) {
-        std::lock_guard<std::mutex> guard(mutex_);
-        verbose_ = enabled;
+        verbose_.store(enabled, std::memory_order_relaxed);
     }
 
     /**
@@ -137,9 +137,9 @@ public:
        @param level Level desired.
     */
     static void setLevel(const Level level) {
-        std::lock_guard<std::mutex> guard(mutex_);
-        level_ = (level <= Error) ? Error : level;
-        setlogmask(LOG_UPTO(level_)); // just in case syslog is used directly
+        Level newLevel = (level <= Error) ? Error : level;
+        level_.store(newLevel, std::memory_order_relaxed);
+        setlogmask(LOG_UPTO(newLevel)); // just in case syslog is used directly
     }
 
     /**
@@ -161,7 +161,7 @@ public:
        @return @em true For levels with priority over application configured one, false in other case.
     */
     static bool isActive(const Level level) {
-        return (level <= Error) ? true : (level <= level_);
+        return (level <= Error) ? true : (level <= level_.load(std::memory_order_relaxed));
     }
     static bool isActive(int level) {
         return isActive((Level)level);
@@ -306,9 +306,9 @@ public:
 
 private:
     static std::mutex mutex_;
-    static Level level_;
-    static bool initialized_;
-    static bool verbose_;
+    static std::atomic<Level> level_;
+    static std::atomic<bool> initialized_;
+    static std::atomic<bool> verbose_;
 
     Logger() {};
     ~Logger() {};
