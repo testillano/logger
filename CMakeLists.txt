@@ -9,6 +9,9 @@ if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   set(MAIN_PROJECT ON)
 endif()
 
+# Enable LTO for Release builds
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
+
 #############
 # Variables #
 #############
